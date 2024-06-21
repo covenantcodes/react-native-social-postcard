@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons, FontAwesome } from "react-native-vector-icons";
 import COLORS from "./colors";
@@ -60,7 +60,11 @@ const PostCard = ({ post }) => {
           {post.images.length === 2 && (
             <View style={styles.postPictureContainerRow}>
               {post.images.slice(0, 2).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
             </View>
           )}
@@ -72,7 +76,11 @@ const PostCard = ({ post }) => {
               </View>
               <View style={styles.postPictureContainerRow}>
                 {post.images.slice(1, 3).map((image, index) => (
-                  <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                  <Image
+                    key={index}
+                    style={[styles.postPicture, { flex: 1 }]}
+                    source={image}
+                  />
                 ))}
               </View>
             </>
@@ -85,7 +93,11 @@ const PostCard = ({ post }) => {
               </View>
               <View style={styles.postPictureContainerRow}>
                 {post.images.slice(1, 4).map((image, index) => (
-                  <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                  <Image
+                    key={index}
+                    style={[styles.postPicture, { flex: 1 }]}
+                    source={image}
+                  />
                 ))}
               </View>
             </>
@@ -95,12 +107,20 @@ const PostCard = ({ post }) => {
             <>
               <View style={styles.postPictureContainerRow}>
                 {post.images.slice(0, 2).map((image, index) => (
-                  <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                  <Image
+                    key={index}
+                    style={[styles.postPicture, { flex: 1 }]}
+                    source={image}
+                  />
                 ))}
               </View>
               <View style={styles.postPictureContainerRow}>
                 {post.images.slice(2, 5).map((image, index) => (
-                  <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                  <Image
+                    key={index}
+                    style={[styles.postPicture, { flex: 1 }]}
+                    source={image}
+                  />
                 ))}
               </View>
             </>
@@ -110,16 +130,24 @@ const PostCard = ({ post }) => {
             <>
               <View style={styles.postPictureContainerRow}>
                 {post.images.slice(0, 2).map((image, index) => (
-                  <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                  <Image
+                    key={index}
+                    style={[styles.postPicture, { flex: 1 }]}
+                    source={image}
+                  />
                 ))}
               </View>
               <View style={styles.postPictureContainerRow}>
                 {post.images.slice(2, 4).map((image, index) => (
-                  <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                  <Image
+                    key={index}
+                    style={[styles.postPicture, { flex: 1 }]}
+                    source={image}
+                  />
                 ))}
                 <View style={styles.overlayContainer}>
-                <View style={styles.postPictureContainerRow}>
-                  <Image style={styles.postPicture} source={post.images[4]} />
+                  <View style={styles.postPictureContainerRow}>
+                    <Image style={styles.postPicture} source={post.images[4]} />
                   </View>
                   <View style={styles.overlay}>
                     <Text style={styles.overlayText}>
@@ -173,7 +201,7 @@ const PostCard = ({ post }) => {
 const styles = StyleSheet.create({
   postBox: {
     borderWidth: 1,
-    borderColor: COLORS.lightgrey,
+    borderColor: "#D3D3D3",
     padding: 10,
     borderRadius: 10,
     marginBottom: 20,
@@ -213,7 +241,7 @@ const styles = StyleSheet.create({
   postDuration: {
     fontFamily: "PoppinsRegular",
     fontSize: 10,
-    color: COLORS.grey,
+    color: "#808080",
   },
 
   postContentTextContainer: {
@@ -226,7 +254,7 @@ const styles = StyleSheet.create({
   },
 
   postContentMore: {
-    color: COLORS.primaryColor,
+    color: "#403C9A",
     fontFamily: "PoppinsSemiBold",
     fontSize: 12,
   },
@@ -293,7 +321,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontFamily: "PoppinsMedium",
     fontSize: 15,
-    color: COLORS.primaryColor,
+    color: "#403C9A",
   },
 });
 

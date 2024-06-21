@@ -1,7 +1,7 @@
 {
   "name": "react-native-social-postcard",
-  "version": "1.0.0",
-  "description": "A social postcard that includes the post box for pictures, profilename, profilepictures and postactions",
+  "version": "1.0.1", 
+  "description": "A social postcard component for React Native.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
