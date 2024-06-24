@@ -58,7 +58,7 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
         <View style={styles.postPictureContainer}>
           {post.images.length === 1 && (
             <View style={styles.postPictureContainerRow}>
-              <Image style={styles.postPicture} source={post.images[0]} />
+              <Image style={styles.postPicture} source={post.images[0]} resizeMode="cover"/>
             </View>
           )}
 
@@ -69,6 +69,7 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                   key={index}
                   style={[styles.postPicture, { flex: 1 }]}
                   source={image}
+                  resizeMode="cover"
                 />
               ))}
             </View>
@@ -85,6 +86,7 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
+                    resizeMode="cover"
                   />
                 ))}
               </View>
@@ -102,6 +104,8 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
+                    resizeMode="cover"
+
                   />
                 ))}
               </View>
@@ -116,6 +120,8 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
+                    resizeMode="center"
+
                   />
                 ))}
               </View>
@@ -125,6 +131,8 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
+                    resizeMode="center"
+
                   />
                 ))}
               </View>
@@ -139,6 +147,8 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
+                    resizeMode="center"
+
                   />
                 ))}
               </View>
@@ -148,6 +158,8 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
+                    resizeMode="center"
+
                   />
                 ))}
                 <View style={styles.overlayContainer}>
@@ -276,7 +288,7 @@ const styles = StyleSheet.create({
 
   postPicture: {
     flex: 1,
-    height: 150,
+    height:300,
     borderRadius: 10,
     marginRight: 5,
   },
