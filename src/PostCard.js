@@ -1,38 +1,37 @@
 import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons, FontAwesome } from "react-native-vector-icons";
+import PropTypes from 'prop-types';
 
 const PostCard = ({
   post,
-  likeColor,
-  commentColor,
-  bookmarkColor,
+  likeOutlineColor = "#403C9A",
+  likeFilledColor = "#FF0000",
+  commentColor = "#403C9A",
+  bookmarkOutlineColor = "#403C9A",
+  bookmarkFilledColor = "#0000FF",
+  commentCount,
   onCommentPress,
   onBookmarkPress,
-  commentCount = 0,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmark, setBookmark] = useState(false);
-  const [likeCount, setLikeCount] = useState(post.likeCount || 0);
+  const [likeCount, setLikeCount] = useState(post.likeCount || 0)  
 
-  const fullText =
-    "If the shoemaker of the furniture doesn't meet up to the ideas of the man of war then there will be a battle between the bride and her tailor because she doesn't know how to cook the husband's meal to taste like the bunker in his boarding house compared to the burger in Wimpy's";
-  const expandableText = isExpanded
-    ? fullText
-    : `${fullText.substring(0, 100)}...`;
+  const fullText = "If the shoemaker of the furniture doesn't meet up to the ideas of the man of war then there will be a battle between the bride and her tailor because she doesn't know how to cook the husband's meal to taste like the bunker in his boarding house compared to the burger in Wimpy's";
+  const expandableText = isExpanded ? fullText : `${fullText.substring(0, 100)}...`;
 
   const toggleLike = () => {
     setLiked((prevLiked) => !prevLiked);
-    setLikeCount((prevLikeCount) =>
-      liked ? prevLikeCount - 1 : prevLikeCount + 1
-    );
+    setLikeCount((prevLikeCount)=> (liked ? prevLikeCount - 1 : prevLikeCount + 1))
   };
 
-  const toggleBookmark = () => {
-    setBookmark((prevBookmark) => !prevBookmark);
+  const handleBookmark = () => {
+    const newBookmark = !bookmark;
+    setBookmark(newBookmark);
     if (onBookmarkPress) {
-      onBookmarkPress(!bookmark);
+      onBookmarkPress(newBookmark);
     }
   };
 
@@ -43,18 +42,15 @@ const PostCard = ({
           <View style={styles.avatarContainer}>
             <Image style={styles.avatar} source={post.avatar} />
           </View>
-
           <View style={styles.postHeaderText}>
             <Text style={styles.postName}>{post.author}</Text>
             <Text style={styles.postDuration}>{post.timestamp}</Text>
           </View>
         </View>
-
         <TouchableOpacity style={styles.menuContainer}>
           {/* <MaterialCommunityIcons name="dots-vertical" size={27} /> */}
         </TouchableOpacity>
       </View>
-
       <View style={styles.postContent}>
         <View style={styles.postContentTextContainer}>
           <Text style={styles.postContentText}>{expandableText}</Text>
@@ -67,14 +63,9 @@ const PostCard = ({
         <View style={styles.postPictureContainer}>
           {post.images.length === 1 && (
             <View style={styles.postPictureContainerRow}>
-              <Image
-                style={styles.postPicture}
-                source={post.images[0]}
-                resizeMode="cover"
-              />
+              <Image style={styles.postPicture} source={post.images[0]} />
             </View>
           )}
-
           {post.images.length === 2 && (
             <View style={styles.postPictureContainerRow}>
               {post.images.slice(0, 2).map((image, index) => (
@@ -82,12 +73,10 @@ const PostCard = ({
                   key={index}
                   style={[styles.postPicture, { flex: 1 }]}
                   source={image}
-                  resizeMode="cover"
                 />
               ))}
             </View>
           )}
-
           {post.images.length === 3 && (
             <>
               <View style={styles.postPictureContainerRow}>
@@ -99,13 +88,11 @@ const PostCard = ({
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
-                    resizeMode="cover"
                   />
                 ))}
               </View>
             </>
           )}
-
           {post.images.length === 4 && (
             <>
               <View style={styles.postPictureContainerRow}>
@@ -117,13 +104,11 @@ const PostCard = ({
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
-                    resizeMode="cover"
                   />
                 ))}
               </View>
             </>
           )}
-
           {post.images.length === 5 && (
             <>
               <View style={styles.postPictureContainerRow}>
@@ -132,7 +117,6 @@ const PostCard = ({
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
-                    resizeMode="center"
                   />
                 ))}
               </View>
@@ -142,13 +126,11 @@ const PostCard = ({
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
-                    resizeMode="center"
                   />
                 ))}
               </View>
             </>
           )}
-
           {post.images.length > 5 && (
             <>
               <View style={styles.postPictureContainerRow}>
@@ -157,7 +139,6 @@ const PostCard = ({
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
-                    resizeMode="center"
                   />
                 ))}
               </View>
@@ -167,7 +148,6 @@ const PostCard = ({
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
-                    resizeMode="center"
                   />
                 ))}
                 <View style={styles.overlayContainer}>
@@ -185,7 +165,6 @@ const PostCard = ({
           )}
         </View>
       </View>
-
       <View style={styles.postActionBox}>
         <View style={styles.postActionLeft}>
           <View style={styles.postAction}>
@@ -193,30 +172,25 @@ const PostCard = ({
               <Ionicons
                 name={liked ? "heart" : "heart-outline"}
                 size={25}
-                color={liked ? likeColor : likeColor}
+                color={liked ? likeFilledColor : likeOutlineColor}
               />
             </TouchableOpacity>
             <Text style={styles.postActionText}>{likeCount}</Text>
           </View>
-
           <View style={styles.postAction}>
-            <TouchableOpacity
-              onPress={onCommentPress}
-              style={{ marginTop: -4 }}
-            >
+            <TouchableOpacity onPress={onCommentPress} style={{ marginTop: -4 }}>
               <FontAwesome name="comment-o" size={20} color={commentColor} />
             </TouchableOpacity>
             <Text style={styles.postActionText}>{commentCount}</Text>
           </View>
         </View>
-
         <View style={styles.postActionRight}>
           <View style={styles.postAction}>
-            <TouchableOpacity onPress={toggleBookmark}>
+            <TouchableOpacity onPress={handleBookmark}>
               <Ionicons
                 name={bookmark ? "bookmark" : "bookmark-outline"}
                 size={25}
-                color={bookmark ? bookmarkColor : bookmarkColor}
+                color={bookmark ? bookmarkFilledColor : bookmarkOutlineColor}
               />
             </TouchableOpacity>
           </View>
@@ -224,6 +198,25 @@ const PostCard = ({
       </View>
     </View>
   );
+};
+
+PostCard.propTypes = {
+  post: PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    timestamp: PropTypes.string.isRequired,
+    avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    ).isRequired,
+  }).isRequired,
+  likeOutlineColor: PropTypes.string,
+  likeFilledColor: PropTypes.string,
+  commentColor: PropTypes.string,
+  bookmarkOutlineColor: PropTypes.string,
+  bookmarkFilledColor: PropTypes.string,
+  commentCount: PropTypes.number,
+  onCommentPress: PropTypes.func,
+  onBookmarkPress: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -234,82 +227,66 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 20,
   },
-
   postHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 10,
   },
-
   postHeaderLeft: {
     flexDirection: "row",
     alignItems: "center",
   },
-
   avatarContainer: {
     height: 50,
     width: 50,
   },
-
   avatar: {
     width: 50,
     height: 50,
     borderRadius: 25,
   },
-
   postHeaderText: {
     marginLeft: 10,
   },
-
   postName: {
     fontFamily: "PoppinsSemiBold",
   },
-
   postDuration: {
     fontFamily: "PoppinsRegular",
     fontSize: 10,
     color: "#808080",
   },
-
   postContentTextContainer: {
     paddingVertical: 5,
   },
-
   postContentText: {
     fontFamily: "PoppinsRegular",
     textAlign: "justify",
   },
-
   postContentMore: {
     color: "#403C9A",
     fontFamily: "PoppinsSemiBold",
     fontSize: 12,
   },
-
   postPictureContainer: {
     marginBottom: 10,
   },
-
   postPictureContainerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
   },
-
   postPicture: {
     flex: 1,
-    height: 300,
+    height: 150,
     borderRadius: 10,
     marginRight: 5,
   },
-
   overlayContainer: {
     flex: 1,
     position: "relative",
-    // marginRight: 5,
   },
-
   overlay: {
     position: "absolute",
     top: 0,
@@ -321,30 +298,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
   },
-
   overlayText: {
     color: "white",
     fontSize: 26,
     fontWeight: "bold",
   },
-
   postActionBox: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingTop: 10,
   },
-
   postActionLeft: {
     flexDirection: "row",
   },
-
   postAction: {
     flexDirection: "row",
     alignItems: "center",
     marginRight: 15,
   },
-
   postActionText: {
     marginLeft: 5,
     fontFamily: "PoppinsMedium",
@@ -352,11 +324,5 @@ const styles = StyleSheet.create({
     color: "#403C9A",
   },
 });
-
-PostCard.defaultProps = {
-  likeColor: "#403C9A",
-  commentColor: "#403C9A",
-  bookmarkColor: "#403C9A",
-};
 
 export default PostCard;
