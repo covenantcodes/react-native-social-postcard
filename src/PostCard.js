@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons, FontAwesome } from "react-native-vector-icons";
-import COLORS from "./colors";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, likeColor, commentColor, bookmarkColor  }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmark, setBookmark] = useState(false);
+  const [likeCount, setLikeCount] = useState(post.likeCount || 0);
 
   const fullText =
     "If the shoemaker of the furniture doesn't meet up to the ideas of the man of war then there will be a battle between the bride and her tailor because she doesn't know how to cook the husband's meal to taste like the bunker in his boarding house compared to the burger in Wimpy's";
@@ -16,6 +16,7 @@ const PostCard = ({ post }) => {
 
   const toggleLike = () => {
     setLiked((prevLiked) => !prevLiked);
+    setLikeCount((prevLikeCount) => (liked ? prevLikeCount - 1 : prevLikeCount + 1))
   };
 
   const toggleBookmark = () => {
@@ -168,15 +169,15 @@ const PostCard = ({ post }) => {
               <Ionicons
                 name={liked ? "heart" : "heart-outline"}
                 size={25}
-                color={liked ? "#403C9A" : "#403C9A"}
+                color={liked ? likeColor : likeColor}
               />
             </TouchableOpacity>
-            <Text style={styles.postActionText}>236</Text>
+            <Text style={styles.postActionText}>{likeCount}</Text>
           </View>
 
           <View style={styles.postAction}>
             <TouchableOpacity style={{ marginTop: -4 }}>
-              <FontAwesome name="comment-o" size={20} color="#403C9A" />
+              <FontAwesome name="comment-o" size={20} color={commentColor} />
             </TouchableOpacity>
             <Text style={styles.postActionText}>223</Text>
           </View>
@@ -188,7 +189,7 @@ const PostCard = ({ post }) => {
               <Ionicons
                 name={bookmark ? "bookmark" : "bookmark-outline"}
                 size={25}
-                color={bookmark ? "#403C9A" : "#403C9A"}
+                color={bookmark ? bookmarkColor : bookmarkColor}
               />
             </TouchableOpacity>
           </View>
@@ -324,5 +325,12 @@ const styles = StyleSheet.create({
     color: "#403C9A",
   },
 });
+
+
+PostCard.defaultProps = {
+    likeColor: "#403C9A",
+    commentColor: "#403C9A",
+    bookmarkColor: "#403C9A"
+}
 
 export default PostCard;
