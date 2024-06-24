@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, Pressable } from "react-native";
 import { Ionicons, FontAwesome } from "react-native-vector-icons";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const PostCard = ({
   post,
@@ -13,18 +13,23 @@ const PostCard = ({
   commentCount,
   onCommentPress,
   onBookmarkPress,
+  onPicturePress
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmark, setBookmark] = useState(false);
-  const [likeCount, setLikeCount] = useState(post.likeCount || 0)  
+  const [likeCount, setLikeCount] = useState(post.likeCount || 0);
+  const { author, timestamp, avatar, images, fullText } = post;
 
-  const fullText = "If the shoemaker of the furniture doesn't meet up to the ideas of the man of war then there will be a battle between the bride and her tailor because she doesn't know how to cook the husband's meal to taste like the bunker in his boarding house compared to the burger in Wimpy's";
-  const expandableText = isExpanded ? fullText : `${fullText.substring(0, 100)}...`;
+  const expandableText = isExpanded
+    ? fullText
+    : `${fullText.substring(0, 100)}...`;
 
   const toggleLike = () => {
     setLiked((prevLiked) => !prevLiked);
-    setLikeCount((prevLikeCount)=> (liked ? prevLikeCount - 1 : prevLikeCount + 1))
+    setLikeCount((prevLikeCount) =>
+      prevLiked ? prevLikeCount - 1 : prevLikeCount + 1
+    );
   };
 
   const handleBookmark = () => {
@@ -35,16 +40,17 @@ const PostCard = ({
     }
   };
 
+
   return (
     <View style={styles.postBox}>
       <View style={styles.postHeader}>
         <View style={styles.postHeaderLeft}>
           <View style={styles.avatarContainer}>
-            <Image style={styles.avatar} source={post.avatar} />
+            <Image style={styles.avatar} source={avatar} />
           </View>
           <View style={styles.postHeaderText}>
-            <Text style={styles.postName}>{post.author}</Text>
-            <Text style={styles.postDuration}>{post.timestamp}</Text>
+            <Text style={styles.postName}>{author}</Text>
+            <Text style={styles.postDuration}>{timestamp}</Text>
           </View>
         </View>
         <TouchableOpacity style={styles.menuContainer}>
@@ -61,106 +67,104 @@ const PostCard = ({
           </TouchableOpacity>
         </View>
         <View style={styles.postPictureContainer}>
-          {post.images.length === 1 && (
-            <View style={styles.postPictureContainerRow}>
-              <Image style={styles.postPicture} source={post.images[0]} />
-            </View>
+          {images.length === 1 && (
+            <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images[0])}>
+              <Image style={styles.postPicture} source={images[0]} />
+            </Pressable>
           )}
-          {post.images.length === 2 && (
-            <View style={styles.postPictureContainerRow}>
-              {post.images.slice(0, 2).map((image, index) => (
+          {images.length === 2 && (
+            <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+              {images.slice(0, 2).map((image, index) => (
                 <Image
                   key={index}
                   style={[styles.postPicture, { flex: 1 }]}
                   source={image}
                 />
               ))}
-            </View>
+            </Pressable>
           )}
-          {post.images.length === 3 && (
+          {images.length === 3 && (
             <>
-              <View style={styles.postPictureContainerRow}>
-                <Image style={styles.postPicture} source={post.images[0]} />
-              </View>
-              <View style={styles.postPictureContainerRow}>
-                {post.images.slice(1, 3).map((image, index) => (
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                <Image style={styles.postPicture} source={images[0]} />
+              </Pressable>
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                {images.slice(1, 3).map((image, index) => (
                   <Image
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                   />
                 ))}
-              </View>
+              </Pressable>
             </>
           )}
-          {post.images.length === 4 && (
+          {images.length === 4 && (
             <>
-              <View style={styles.postPictureContainerRow}>
-                <Image style={styles.postPicture} source={post.images[0]} />
-              </View>
-              <View style={styles.postPictureContainerRow}>
-                {post.images.slice(1, 4).map((image, index) => (
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                <Image style={styles.postPicture} source={images[0]} />
+              </Pressable>
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                {images.slice(1, 4).map((image, index) => (
                   <Image
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                   />
                 ))}
-              </View>
+              </Pressable>
             </>
           )}
-          {post.images.length === 5 && (
+          {images.length === 5 && (
             <>
-              <View style={styles.postPictureContainerRow}>
-                {post.images.slice(0, 2).map((image, index) => (
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                {images.slice(0, 2).map((image, index) => (
                   <Image
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                   />
                 ))}
-              </View>
-              <View style={styles.postPictureContainerRow}>
-                {post.images.slice(2, 5).map((image, index) => (
+              </Pressable>
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                {images.slice(2, 5).map((image, index) => (
                   <Image
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                   />
                 ))}
-              </View>
+              </Pressable>
             </>
           )}
-          {post.images.length > 5 && (
+          {images.length > 5 && (
             <>
-              <View style={styles.postPictureContainerRow}>
-                {post.images.slice(0, 2).map((image, index) => (
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                {images.slice(0, 2).map((image, index) => (
                   <Image
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                   />
                 ))}
-              </View>
-              <View style={styles.postPictureContainerRow}>
-                {post.images.slice(2, 4).map((image, index) => (
+              </Pressable>
+              <Pressable style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                {images.slice(2, 4).map((image, index) => (
                   <Image
                     key={index}
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                   />
                 ))}
-                <View style={styles.overlayContainer}>
-                  <View style={styles.postPictureContainerRow}>
-                    <Image style={styles.postPicture} source={post.images[4]} />
-                  </View>
-                  <View style={styles.overlay}>
-                    <Text style={styles.overlayText}>
-                      +{post.images.length - 5}
-                    </Text>
-                  </View>
-                </View>
-              </View>
+                <TouchableOpacity style={styles.overlayContainer}>
+                  <TouchableOpacity style={styles.postPictureContainerRow} onPress={()=>onPicturePress(images)}>
+                    <Image style={styles.postPicture} source={images[4]} />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.overlay}>
+                    <Text style={styles.overlayText}>+{images.length - 5}</Text>
+                  </TouchableOpacity>
+                </TouchableOpacity>
+              </Pressable>
             </>
           )}
         </View>
@@ -178,7 +182,10 @@ const PostCard = ({
             <Text style={styles.postActionText}>{likeCount}</Text>
           </View>
           <View style={styles.postAction}>
-            <TouchableOpacity onPress={onCommentPress} style={{ marginTop: -4 }}>
+            <TouchableOpacity
+              onPress={onCommentPress}
+              style={{ marginTop: -4 }}
+            >
               <FontAwesome name="comment-o" size={20} color={commentColor} />
             </TouchableOpacity>
             <Text style={styles.postActionText}>{commentCount}</Text>
@@ -204,10 +211,12 @@ PostCard.propTypes = {
   post: PropTypes.shape({
     author: PropTypes.string.isRequired,
     timestamp: PropTypes.string.isRequired,
-    avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+    avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+      .isRequired,
     images: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     ).isRequired,
+    fullText: PropTypes.string.isRequired, // Adding fullText as required prop
   }).isRequired,
   likeOutlineColor: PropTypes.string,
   likeFilledColor: PropTypes.string,
@@ -217,6 +226,7 @@ PostCard.propTypes = {
   commentCount: PropTypes.number,
   onCommentPress: PropTypes.func,
   onBookmarkPress: PropTypes.func,
+  onPicturePress: PropTypes.func,
 };
 
 const styles = StyleSheet.create({
@@ -279,7 +289,7 @@ const styles = StyleSheet.create({
   },
   postPicture: {
     flex: 1,
-    height: 150,
+    height: 300,
     borderRadius: 10,
     marginRight: 5,
   },
