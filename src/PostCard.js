@@ -2,7 +2,15 @@ import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons, FontAwesome } from "react-native-vector-icons";
 
-const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress, onBookmarkPress  }) => {
+const PostCard = ({
+  post,
+  likeColor,
+  commentColor,
+  bookmarkColor,
+  onCommentPress,
+  onBookmarkPress,
+  commentCount = 0,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmark, setBookmark] = useState(false);
@@ -16,10 +24,11 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
 
   const toggleLike = () => {
     setLiked((prevLiked) => !prevLiked);
-    setLikeCount((prevLikeCount) => (liked ? prevLikeCount - 1 : prevLikeCount + 1))
+    setLikeCount((prevLikeCount) =>
+      liked ? prevLikeCount - 1 : prevLikeCount + 1
+    );
   };
 
-  
   const toggleBookmark = () => {
     setBookmark((prevBookmark) => !prevBookmark);
     if (onBookmarkPress) {
@@ -58,7 +67,11 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
         <View style={styles.postPictureContainer}>
           {post.images.length === 1 && (
             <View style={styles.postPictureContainerRow}>
-              <Image style={styles.postPicture} source={post.images[0]} resizeMode="cover"/>
+              <Image
+                style={styles.postPicture}
+                source={post.images[0]}
+                resizeMode="cover"
+              />
             </View>
           )}
 
@@ -105,7 +118,6 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                     resizeMode="cover"
-
                   />
                 ))}
               </View>
@@ -121,7 +133,6 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                     resizeMode="center"
-
                   />
                 ))}
               </View>
@@ -132,7 +143,6 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                     resizeMode="center"
-
                   />
                 ))}
               </View>
@@ -148,7 +158,6 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                     resizeMode="center"
-
                   />
                 ))}
               </View>
@@ -159,7 +168,6 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
                     style={[styles.postPicture, { flex: 1 }]}
                     source={image}
                     resizeMode="center"
-
                   />
                 ))}
                 <View style={styles.overlayContainer}>
@@ -192,10 +200,13 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress
           </View>
 
           <View style={styles.postAction}>
-            <TouchableOpacity onPress={onCommentPress} style={{ marginTop: -4 }}>
+            <TouchableOpacity
+              onPress={onCommentPress}
+              style={{ marginTop: -4 }}
+            >
               <FontAwesome name="comment-o" size={20} color={commentColor} />
             </TouchableOpacity>
-            <Text style={styles.postActionText}>223</Text>
+            <Text style={styles.postActionText}>{commentCount}</Text>
           </View>
         </View>
 
@@ -288,7 +299,7 @@ const styles = StyleSheet.create({
 
   postPicture: {
     flex: 1,
-    height:300,
+    height: 300,
     borderRadius: 10,
     marginRight: 5,
   },
@@ -342,11 +353,10 @@ const styles = StyleSheet.create({
   },
 });
 
-
 PostCard.defaultProps = {
-    likeColor: "#403C9A",
-    commentColor: "#403C9A",
-    bookmarkColor: "#403C9A"
-}
+  likeColor: "#403C9A",
+  commentColor: "#403C9A",
+  bookmarkColor: "#403C9A",
+};
 
 export default PostCard;
