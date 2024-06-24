@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons, FontAwesome } from "react-native-vector-icons";
 
-const PostCard = ({ post, likeColor, commentColor, bookmarkColor  }) => {
+const PostCard = ({ post, likeColor, commentColor, bookmarkColor, onCommentPress, onBookmarkPress  }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmark, setBookmark] = useState(false);
@@ -19,8 +19,12 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor  }) => {
     setLikeCount((prevLikeCount) => (liked ? prevLikeCount - 1 : prevLikeCount + 1))
   };
 
+  
   const toggleBookmark = () => {
     setBookmark((prevBookmark) => !prevBookmark);
+    if (onBookmarkPress) {
+      onBookmarkPress(!bookmark);
+    }
   };
 
   return (
@@ -176,7 +180,7 @@ const PostCard = ({ post, likeColor, commentColor, bookmarkColor  }) => {
           </View>
 
           <View style={styles.postAction}>
-            <TouchableOpacity style={{ marginTop: -4 }}>
+            <TouchableOpacity onPress={onCommentPress} style={{ marginTop: -4 }}>
               <FontAwesome name="comment-o" size={20} color={commentColor} />
             </TouchableOpacity>
             <Text style={styles.postActionText}>223</Text>
