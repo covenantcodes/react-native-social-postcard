@@ -48,7 +48,7 @@ const posts = [
       require("./assets/post1.jpg"),
     ],
 
-    fullText: "If the shoemaker of theill be a battle between the bride and her tailor because she doesn't know how to cook ts boarding house compared to the burger in Wimpy's"
+    fullText: "If the shoemaker of a battle between the bride and her tailor because she doesn't know how to cook ts boarding house compared to the burger in Wimpy's"
   },
 
   {
@@ -194,6 +194,9 @@ A component to render the action buttons for the post, including like, comment, 
 | commentCount | number | Yes | The number of comments on the post |
 | bookmark | bool | Yes | Boolean indicating whether the post is bookmarked |
 | colors | object | Yes | An object containing color settings |
+
+## Author
+[Github](https://github.com/covenantcodes) [LinkedIn](https://www.linkedin.com/in/covenantifeoluwa) [Medium](https://medium.com/@covenantcodes)
 
 ## Contributions
 Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or improvements.

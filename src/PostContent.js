@@ -48,6 +48,7 @@ PostCard.propTypes = {
     images: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])).isRequired,
     fullText: PropTypes.string.isRequired,
   }).isRequired,
+  likeCount: PropTypes.number.isRequired,
   colors: PropTypes.object.isRequired,
   commentCount: PropTypes.number.isRequired,
   onCommentPress: PropTypes.func.isRequired,
