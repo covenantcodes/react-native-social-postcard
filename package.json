@@ -1,6 +1,6 @@
 {
   "name": "react-native-social-postcard",
-  "version": "1.0.2", 
+  "version": "1.0.2",
   "description": "A social postcard component for React Native.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/covenantcodes/react-native-social-postcard/issues"
   },
-  "homepage": "https://github.com/covenantcodes/react-native-social-postcard#readme"
+  "homepage": "https://github.com/covenantcodes/react-native-social-postcard#readme",
+  "devDependencies": {
+    "@types/prop-types": "^15.7.12",
+    "@types/react-native-vector-icons": "^6.4.18",
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "react-native": "^0.74.2",
+    "react-native-vector-icons": "^10.1.0"
+  }
 }

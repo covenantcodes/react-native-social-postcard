@@ -1,15 +1,42 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import { Ionicons, FontAwesome } from "react-native-vector-icons";
-import PropTypes from "prop-types";
+import { View, Text, TouchableOpacity} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
 
-const PostActions = ({ liked, likeCount, toggleLike, onCommentPress, commentCount, handleBookmark, bookmark, colors }) => (
+interface PostActionsProps {
+  liked: boolean;
+  likeCount: number;
+  toggleLike: () => void;
+  onCommentPress: () => void;
+  commentCount: number;
+  handleBookmark: () => void;
+  bookmark: boolean;
+  colors: {
+    likeFilledColor?: string;
+    likeOutlineColor?: string;
+    commentColor?: string;
+    bookmarkFilledColor?: string;
+    bookmarkOutlineColor?: string;
+  };
+}
+
+
+const PostActions: React.FC<PostActionsProps> = ({
+  liked,
+  likeCount,
+  toggleLike,
+  onCommentPress,
+  commentCount,
+  handleBookmark,
+  bookmark,
+  colors,
+}) => (
   <View style={styles.postActionBox}>
     <View style={styles.postActionLeft}>
       <View style={styles.postAction}>
         <TouchableOpacity onPress={toggleLike}>
           <Ionicons
-            name={liked ? "heart" : "heart-outline"}
+            name={liked ? 'heart' : 'heart-outline'}
             size={25}
             color={liked ? colors.likeFilledColor : colors.likeOutlineColor}
           />
@@ -27,7 +54,7 @@ const PostActions = ({ liked, likeCount, toggleLike, onCommentPress, commentCoun
       <View style={styles.postAction}>
         <TouchableOpacity onPress={handleBookmark}>
           <Ionicons
-            name={bookmark ? "bookmark" : "bookmark-outline"}
+            name={bookmark ? 'bookmark' : 'bookmark-outline'}
             size={25}
             color={bookmark ? colors.bookmarkFilledColor : colors.bookmarkOutlineColor}
           />
@@ -36,16 +63,5 @@ const PostActions = ({ liked, likeCount, toggleLike, onCommentPress, commentCoun
     </View>
   </View>
 );
-
-PostActions.propTypes = {
-  liked: PropTypes.bool.isRequired,
-  likeCount: PropTypes.number.isRequired,
-  toggleLike: PropTypes.func.isRequired,
-  onCommentPress: PropTypes.func.isRequired,
-  commentCount: PropTypes.number.isRequired,
-  handleBookmark: PropTypes.func.isRequired,
-  bookmark: PropTypes.bool.isRequired,
-  colors: PropTypes.object.isRequired,
-};
 
 export default PostActions;
