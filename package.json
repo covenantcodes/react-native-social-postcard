@@ -22,7 +22,6 @@
     "typescript": "^5.5.2"
   },
   "dependencies": {
-    "prop-types": "^15.8.1",
     "react-native": "^0.74.2",
     "react-native-vector-icons": "^10.1.0"
   }
