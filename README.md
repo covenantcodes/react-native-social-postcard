@@ -22,6 +22,15 @@ npm install react-native-vector-icons prop-types
 yarn add react-native-vector-icons prop-types
 ```
 
+Install package using npm or yarn:
+
+```bash
+npm install react-native-social-postcard
+# or
+yarn add react-native-social-postcard
+```
+
+
 ## Usage
 
 Import and use the PostCard component in your React Native project:

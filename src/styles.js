@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  mainContainer:{
+      paddingHorizontal: 8,
+  }, 
+
   postBox: {
     borderWidth: 1,
     borderColor: "#D3D3D3",
-    padding: 10,
-    borderRadius: 10,
+    padding: 5,
+    borderRadius: 15,
     marginBottom: 20,
   },
   postHeader: {
@@ -22,6 +26,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
   },
+
   avatar: {
     width: 50,
     height: 50,
@@ -38,6 +43,8 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#808080",
   },
+
+  
   postContentTextContainer: {
     paddingVertical: 5,
   },
@@ -85,10 +92,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   postActionBox: {
+    marginBottom: 5,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 10,
   },
   postActionLeft: {
     flexDirection: "row",
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
   postAction: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 15,
+    marginRight: 10,
   },
   postActionText: {
     marginLeft: 5,

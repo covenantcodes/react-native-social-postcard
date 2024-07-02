@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Pressable, ImageSourcePropType, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Pressable, ImageSourcePropType } from 'react-native';
 import styles from './styles';
 
 interface PostContentProps {
   fullText: string;
-  images: (string | ImageSourcePropType)[];
+  images: Array<string | ImageSourcePropType>;
   onPicturePress: (image: string | ImageSourcePropType) => void;
 }
 
-const PostContent: React.FC<PostContentProps> = ({ fullText, images, onPicturePress }) => {
+const PostContent: React.FC<PostContentProps> = ({ fullText, images = [], onPicturePress }) => {  
   const [isExpanded, setIsExpanded] = useState(false);
   const expandableText = isExpanded ? fullText : `${fullText.substring(0, 100)}...`;
 
   const imageSources = images.map(image => (typeof image === 'string' ? { uri: image } : image));
 
   return (
-    <View style={styles.postBox}>
+    <View>
       <View style={styles.postContentTextContainer}>
         <Text style={styles.postContentText}>{expandableText}</Text>
         <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
@@ -99,16 +99,5 @@ const PostContent: React.FC<PostContentProps> = ({ fullText, images, onPicturePr
     </View>
   );
 };
-
-// PostContent.propTypes = {
-//   fullText: PropTypes.string.isRequired,
-//   images: PropTypes.arrayOf(PropTypes.oneOfType([
-//     PropTypes.shape({
-//       uri: PropTypes.string.isRequired,
-//     }),
-//     PropTypes.string,
-//   ])).isRequired,
-//   onPicturePress: PropTypes.func.isRequired,
-// };
 
 export default PostContent;

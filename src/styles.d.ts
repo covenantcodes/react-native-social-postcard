@@ -24,8 +24,7 @@ declare const styles: {
     overlayContainer: any;
     overlay: any;
     overlayText: any;
-
-    // Add more styles as needed
+    mainContainer: any;
   };
   export default styles;
   
