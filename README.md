@@ -31,7 +31,14 @@ yarn add react-native-social-postcard
 ```
 
 ## Demo 
-![Social-PostCard-Demo](/assets/demo.gif)
+<table>
+  <tr>
+    <td><img src="assets/pic2.jpg" width=210 height=500></td>
+    <td><img src="assets/pic1.jpg" width=210 height=500></td>
+  </tr>
+ </table>
+
+### Watch Demo Video [Here](https://drive.google.com/file/d/1xuG-0CRNhUidIGw91o4LQq__jkKT-WTY/view?usp=drive_link)
 
 ## Usage
 
