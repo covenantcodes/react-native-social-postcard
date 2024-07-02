@@ -36,10 +36,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   postName: {
-    fontFamily: "PoppinsSemiBold",
+    // fontFamily: "PoppinsSemiBold",
+    fontWeight: "bold"
   },
   postDuration: {
-    fontFamily: "PoppinsRegular",
+    // fontFamily: "PoppinsRegular",
     fontSize: 10,
     color: "#808080",
   },
@@ -49,12 +50,13 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   postContentText: {
-    fontFamily: "PoppinsRegular",
+    // fontFamily: "PoppinsRegular",
     textAlign: "justify",
   },
   postContentMore: {
     color: "#403C9A",
-    fontFamily: "PoppinsSemiBold",
+    // fontFamily: "PoppinsSemiBold",
+    fontWeight: "bold",
     fontSize: 12,
   },
   postPictureContainer: {
@@ -107,7 +109,8 @@ const styles = StyleSheet.create({
   },
   postActionText: {
     marginLeft: 5,
-    fontFamily: "PoppinsMedium",
+    // fontFamily: "PoppinsMedium",
+    fontWeight: "bold",
     fontSize: 15,
     color: "#403C9A",
   },

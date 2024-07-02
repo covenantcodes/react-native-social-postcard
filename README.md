@@ -17,9 +17,9 @@ A customizable and interactive social media postcard component for your React Na
 Install the necessary dependencies using npm or yarn:
 
 ```bash
-npm install react-native-vector-icons prop-types
+npm install react-native-vector-icons 
 # or
-yarn add react-native-vector-icons prop-types
+yarn add react-native-vector-icons 
 ```
 
 Install package using npm or yarn:
@@ -30,6 +30,8 @@ npm install react-native-social-postcard
 yarn add react-native-social-postcard
 ```
 
+## Demo 
+![Social-PostCard-Demo](/assets/demo.gif)
 
 ## Usage
 
