@@ -33,8 +33,8 @@ yarn add react-native-social-postcard
 ## Demo 
 <table>
   <tr>
-    <td><img src="assets/pic2.jpg" width=210 height=500></td>
-    <td><img src="assets/pic1.jpg" width=210 height=500></td>
+    <td><img src="https://res.cloudinary.com/dydxtprdb/image/upload/v1720001613/pic1_hm3j3z.jpg" width=210 height=500></td>
+    <td><img src="https://res.cloudinary.com/dydxtprdb/image/upload/v1720001613/pic2_ouchba.jpg" width=210 height=500></td>
   </tr>
  </table>
 
