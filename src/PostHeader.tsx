@@ -10,7 +10,6 @@ interface PostHeaderProps {
 }
 
 const PostHeader: React.FC<PostHeaderProps> = ({ author, timestamp, avatar }) => {
-
   const avatarSource = typeof avatar === 'string' ? { uri: avatar } : avatar;
 
   return (
@@ -34,7 +33,11 @@ const PostHeader: React.FC<PostHeaderProps> = ({ author, timestamp, avatar }) =>
 PostHeader.propTypes = {
   author: PropTypes.string.isRequired,
   timestamp: PropTypes.string.isRequired,
-  avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  avatar: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object,
+  ]).isRequired,
 };
 
 export default PostHeader;

@@ -3,25 +3,30 @@ import { View, Text, Image, TouchableOpacity, Pressable, ImageSourcePropType } f
 import styles from './styles';
 
 interface PostContentProps {
-  fullText: string;
+  fullText?: string;
   images: Array<string | ImageSourcePropType>;
   onPicturePress: (image: string | ImageSourcePropType) => void;
 }
 
-const PostContent: React.FC<PostContentProps> = ({ fullText, images = [], onPicturePress }) => {  
+const PostContent: React.FC<PostContentProps> = ({ fullText = '', images = [], onPicturePress }) => {  
   const [isExpanded, setIsExpanded] = useState(false);
+  const showMoreButton = fullText && fullText.length > 100;
   const expandableText = isExpanded ? fullText : `${fullText.substring(0, 100)}...`;
 
   const imageSources = images.map(image => (typeof image === 'string' ? { uri: image } : image));
 
   return (
     <View>
+          {fullText && (
       <View style={styles.postContentTextContainer}>
         <Text style={styles.postContentText}>{expandableText}</Text>
-        <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
-          <Text style={styles.postContentMore}>{isExpanded ? "Less" : "More"}</Text>
-        </TouchableOpacity>
+        {showMoreButton && (
+            <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
+              <Text style={styles.postContentMore}>{isExpanded ? "Less" : "More"}</Text>
+            </TouchableOpacity>
+          )}
       </View>
+          )}
       <View style={styles.postPictureContainer}>
         {imageSources.length === 1 && (
           <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>

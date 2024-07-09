@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  mainContainer:{
-      paddingHorizontal: 8,
-  }, 
 
   postBox: {
     borderWidth: 1,
