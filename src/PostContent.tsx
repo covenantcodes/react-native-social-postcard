@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, Pressable, ImageSourcePropType } from 'react-native';
-import styles from './styles';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  ImageSourcePropType,
+} from "react-native";
+import styles from "./styles";
 
 interface PostContentProps {
   fullText?: string;
@@ -8,89 +15,161 @@ interface PostContentProps {
   onPicturePress: (image: string | ImageSourcePropType) => void;
 }
 
-const PostContent: React.FC<PostContentProps> = ({ fullText = '', images = [], onPicturePress }) => {  
+const PostContent: React.FC<PostContentProps> = ({
+  fullText = "",
+  images = [],
+  onPicturePress,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const showMoreButton = fullText && fullText.length > 100;
-  const expandableText = isExpanded ? fullText : `${fullText.substring(0, 100)}...`;
+  const expandableText = isExpanded
+    ? fullText
+    : `${fullText.substring(0, 100)}...`;
 
-  const imageSources = images.map(image => (typeof image === 'string' ? { uri: image } : image));
+  const imageSources = images.map((image) =>
+    typeof image === "string" ? { uri: image } : image
+  );
 
   return (
     <View>
-          {fullText && (
-      <View style={styles.postContentTextContainer}>
-        <Text style={styles.postContentText}>{expandableText}</Text>
-        {showMoreButton && (
+      {fullText && (
+        <View style={styles.postContentTextContainer}>
+          <Text style={styles.postContentText}>{expandableText}</Text>
+          {showMoreButton && (
             <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
-              <Text style={styles.postContentMore}>{isExpanded ? "Less" : "More"}</Text>
+              <Text style={styles.postContentMore}>
+                {isExpanded ? "Less" : "More"}
+              </Text>
             </TouchableOpacity>
           )}
-      </View>
-          )}
+        </View>
+      )}
       <View style={styles.postPictureContainer}>
         {imageSources.length === 1 && (
-          <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>
+          <Pressable
+            testID="post-image-0"
+            style={styles.postPictureContainerRow}
+            onPress={() => onPicturePress(imageSources[0])}
+          >
             <Image style={styles.postPicture} source={imageSources[0]} />
           </Pressable>
         )}
         {imageSources.length === 2 && (
-          <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>
+          <Pressable
+            style={styles.postPictureContainerRow}
+            onPress={() => onPicturePress(imageSources[0])}
+          >
             {imageSources.slice(0, 2).map((image, index) => (
-              <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+              <Image
+                key={index}
+                style={[styles.postPicture, { flex: 1 }]}
+                source={image}
+              />
             ))}
           </Pressable>
         )}
         {imageSources.length === 3 && (
           <>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[0])}
+            >
               <Image style={styles.postPicture} source={imageSources[0]} />
             </Pressable>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[1])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[1])}
+            >
               {imageSources.slice(1, 3).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
             </Pressable>
           </>
         )}
         {imageSources.length === 4 && (
           <>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[0])}
+            >
               <Image style={styles.postPicture} source={imageSources[0]} />
             </Pressable>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[1])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[1])}
+            >
               {imageSources.slice(1, 4).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
             </Pressable>
           </>
         )}
         {imageSources.length === 5 && (
           <>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[0])}
+            >
               {imageSources.slice(0, 2).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
             </Pressable>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[2])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[2])}
+            >
               {imageSources.slice(2, 5).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
             </Pressable>
           </>
         )}
         {imageSources.length > 5 && (
           <>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[0])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[0])}
+            >
               {imageSources.slice(0, 2).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
             </Pressable>
-            <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[2])}>
+            <Pressable
+              style={styles.postPictureContainerRow}
+              onPress={() => onPicturePress(imageSources[2])}
+            >
               {imageSources.slice(2, 4).map((image, index) => (
-                <Image key={index} style={[styles.postPicture, { flex: 1 }]} source={image} />
+                <Image
+                  key={index}
+                  style={[styles.postPicture, { flex: 1 }]}
+                  source={image}
+                />
               ))}
               <View style={styles.overlayContainer}>
-                <Pressable style={styles.postPictureContainerRow} onPress={() => onPicturePress(imageSources[4])}>
+                <Pressable
+                  style={styles.postPictureContainerRow}
+                  onPress={() => onPicturePress(imageSources[4])}
+                >
                   <Image style={styles.postPicture} source={imageSources[4]} />
                 </Pressable>
                 <View style={styles.overlay}>

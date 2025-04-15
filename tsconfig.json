@@ -7,7 +7,7 @@
     "strict": true,
     "skipLibCheck": true,
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "types": [],
+    "types": ["jest"],
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-native",
